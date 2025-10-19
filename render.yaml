@@ -10,4 +10,3 @@ services:
     disk:
       name: rag-data
       mountPath: /opt/render/project/src/data
-      sizeGB: 1
