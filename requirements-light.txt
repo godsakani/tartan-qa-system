@@ -1,0 +1,16 @@
+# Lighter version for free tier deployment
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+langchain==0.1.0
+langchain-core==0.1.0
+langchain-community==0.0.10
+google-generativeai==0.3.2
+python-dotenv==1.0.0
+pypdf==3.17.4
+docx2txt==0.8
+pydantic==2.5.0
+# Skip heavy ML dependencies for lighter deployment
+# sentence-transformers==2.2.2
+# torch==2.1.0
+# chromadb==0.4.18
