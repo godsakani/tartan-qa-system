@@ -1,7 +1,7 @@
 services:
   - type: web
     name: rag-fastapi-app
-    runtime: python3
+    runtime: python
     buildCommand: pip install -r requirements-free.txt
     startCommand: uvicorn main_simple:app --host 0.0.0.0 --port $PORT
     envVars:
