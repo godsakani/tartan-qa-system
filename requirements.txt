@@ -6,7 +6,7 @@ langchain-core
 langchain-community
 langchain-chroma
 sentence-transformers
-torch
+#torch
 google-generativeai
 python-dotenv
 pypdf
