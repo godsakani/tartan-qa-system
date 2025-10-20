@@ -5,6 +5,6 @@ python-multipart
 pydantic
 python-dotenv
 google-generativeai
-pypdf
+PyPDF2
 python-docx
 requests
