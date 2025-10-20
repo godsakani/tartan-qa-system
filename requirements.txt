@@ -1,16 +1,47 @@
-fastapi
-uvicorn
-python-multipart
-langchain
-langchain-core
-langchain-community
-langchain-chroma
-sentence-transformers
-#torch
-google-generativeai
-python-dotenv
-pypdf
-docx2txt
-chromadb
-pydantic
-langchain-google-genai
+# fastapi
+# uvicorn
+# python-multipart
+# langchain
+# langchain-core
+# langchain-community
+# langchain-chroma
+# sentence-transformers
+# #torch
+# google-generativeai
+# python-dotenv
+# pypdf
+# docx2txt
+# chromadb
+# pydantic
+# langchain-google-genai
+
+# Web Framework (Lightweight)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# LangChain Core (Minimal)
+langchain-core==0.1.33
+langchain-community==0.0.20
+langchain-text-splitters==0.0.1
+
+# Vector Database
+chromadb==0.4.18
+langchain-chroma==0.1.1
+
+# Embeddings (Lightweight)
+sentence-transformers==2.2.2
+
+# Google AI (API-based, not local models)
+google-generativeai==0.3.0
+langchain-google-genai==0.0.4
+
+# Document Processing
+pypdf==3.17.0
+docx2txt==0.8
+
+# Utilities
+python-dotenv==1.0.0
+pydantic==2.5.0
+
+# Remove torch - it's too large for Render free tier
