@@ -70,7 +70,7 @@
 ## Google Embeddings
 from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader, UnstructuredHTMLLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from typing import List
 from langchain_core.documents import Document
@@ -83,18 +83,26 @@ load_dotenv()
 # Initialize text splitter and embedding function
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, length_function=len)
 
-# Use HuggingFace embeddings (free and reliable)
-embedding_function = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2",
-    model_kwargs={'device': 'cpu'},
-    encode_kwargs={'normalize_embeddings': True}
-)
-
 # Use persistent storage path for production
 DATA_DIR = os.getenv("DATA_DIR", "./data")
 CHROMA_DIR = os.path.join(DATA_DIR, "chroma_db")
 os.makedirs(CHROMA_DIR, exist_ok=True)
 
+# Use OpenAI embeddings (API-based, lightweight)
+openai_api_key = os.getenv("OPENAI_API_KEY")
+if openai_api_key:
+    # Use standard OpenAI embeddings (1536 dimensions)
+    embedding_function = OpenAIEmbeddings(model="azure/text-embedding-3-small",
+                                          openai_api_key=openai_api_key, 
+                                          base_url='https://ai-gateway.andrew.cmu.edu/')
+    collection_name = "openai_collection"
+else:
+    # Fallback to a simple embedding function if no OpenAI key (384 dimensions)
+    from langchain_community.embeddings import FakeEmbeddings
+    embedding_function = FakeEmbeddings(size=384)
+    collection_name = "fake_collection"
+
+# Create vectorstore with specific collection name to avoid dimension conflicts
 vectorstore = Chroma(persist_directory=CHROMA_DIR, embedding_function=embedding_function)
 
 def load_and_split_document(file_path: str) -> List[Document]:

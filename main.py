@@ -34,11 +34,17 @@ def chat(query_input:QueryInput):
     
     chat_history = get_chat_history(session_id)
     rag_chain = get_rag_chain(query_input.model.value)
-    result = rag_chain({
+    result = rag_chain.invoke({
         "input":query_input.question,
         "chat_history":chat_history
     })
-    answer = result['answer']
+    
+    # Handle both string and dictionary responses
+    logging.info(f"RAG chain result type: {type(result)}")
+    if isinstance(result, dict):
+        answer = result.get('answer', str(result))
+    else:
+        answer = str(result)
     
     insert_application_logs(session_id, query_input.question, answer, query_input.model.value)
     logging.info(f"Session ID: {session_id}, AI Response: {answer}")

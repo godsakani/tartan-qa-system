@@ -3,8 +3,8 @@ from enum import Enum
 from datetime import datetime
 
 class ModelName(str, Enum):
-    GPT_O = "gemini-1.5-flash"
-    GPT_O_MINI = "gemini-1.5-pro"
+    GPT_O = "gpt-4o-2024-08-06"
+    GPT_O_MINI = "gpt-4o-mini"
     
     
 class QueryInput(BaseModel):
