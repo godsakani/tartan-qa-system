@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: rag-fastapi-app
+    runtime: python
+    buildCommand: pip install -r requirements-free-tier.txt
+    startCommand: uvicorn main_free_tier:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false

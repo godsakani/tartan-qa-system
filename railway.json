@@ -1,6 +1,9 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "buildCommand": "pip install -r requirements-free-tier.txt"
+  },
   "deploy": {
-    "startCommand": "chmod +x start.sh && ./start.sh"
+    "startCommand": "uvicorn main_free_tier:app --host 0.0.0.0 --port $PORT"
   }
 }
