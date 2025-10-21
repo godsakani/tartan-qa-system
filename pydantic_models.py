@@ -10,7 +10,7 @@ class ModelName(str, Enum):
 class QueryInput(BaseModel):
     question:str
     session_id:str=Field(default=None)
-    model: ModelName = Field(default=ModelName.GPT_O_MINI)
+    model: ModelName = Field(default=ModelName.GPT_O)
     
 
 class QueryResponse(BaseModel):
