@@ -1,9 +1,18 @@
+import sys
+import os
+from dotenv import load_dotenv
+
+# Add current directory to Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+# Load environment variables from parent directory
+load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
+
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from pydantic_models import QueryInput, QueryResponse, DocumentInfo, DeleFileRequest
 from langchain_utils import get_rag_chain
 from db_utils import insert_application_logs, get_chat_history,get_all_documents, insert_document_record, delete_document_record
 from chroma_utils import index_document_to_chroma, delete_doc_from_chroma
-import os
 import uuid
 import logging
 import shutil
